@@ -7,5 +7,7 @@ defmodule Tester.Router do
 
   scope "/api", Tester do
     pipe_through :api
+
+    get "/health-check", BaseController, :health_check
   end
 end
