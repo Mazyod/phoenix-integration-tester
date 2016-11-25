@@ -8,7 +8,7 @@ defmodule Tester.TesterChannel do
       send self(), :after_join
       {:ok, socket}
     else
-      _ -> {:error, socket}
+      _ -> {:error, %{message: "auth required"}}
     end
   end
 
