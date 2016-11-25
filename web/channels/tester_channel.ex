@@ -2,9 +2,14 @@ defmodule Tester.TesterChannel do
   use Tester.Web, :channel
   require Logger
 
-  def join("tester:" <> _id, _payload, socket) do
-    send self(), :after_join
-    {:ok, socket}
+  def join("tester:" <> _id, params, socket) do
+
+    with %{"auth" => _auth} <- params do
+      send self(), :after_join
+      {:ok, socket}
+    else
+      _ -> {:error, socket}
+    end
   end
 
   def handle_in("push_test", params, socket) do
