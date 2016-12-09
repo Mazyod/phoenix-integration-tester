@@ -22,6 +22,11 @@ defmodule Tester.TesterChannel do
     {:reply, :error, socket}
   end
 
+  def handle_in("no_reply", _, socket) do
+    Logger.debug("[timeout_test]")
+    {:noreply, socket}
+  end
+
   def handle_info(:after_join, socket) do
     push socket, "after_join", %{message: "Welcome!"}
     {:noreply, socket}
