@@ -12,9 +12,15 @@ defmodule Tester.TesterChannel do
     end
   end
 
+  def handle_in("reply_test", params, socket) do
+    Logger.debug("[reply_test]: #{inspect params}")
+    {:reply, {:ok, params}, socket}
+  end
+
   def handle_in("push_test", params, socket) do
     Logger.debug("[push_test]: #{inspect params}")
-    {:reply, {:ok, params}, socket}
+    push socket, "push_test", %{"works" => true}
+    {:noreply, socket}
   end
 
   def handle_in("error_test", _, socket) do
@@ -22,7 +28,7 @@ defmodule Tester.TesterChannel do
     {:reply, :error, socket}
   end
 
-  def handle_in("no_reply", _, socket) do
+  def handle_in("timeout_test", _, socket) do
     Logger.debug("[timeout_test]")
     {:noreply, socket}
   end
