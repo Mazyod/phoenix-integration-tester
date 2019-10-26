@@ -28,9 +28,11 @@ defmodule Tester.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.2.1"},
+    [{:phoenix, "~> 1.4.0"},
      {:phoenix_pubsub, "~> 1.0"},
      {:gettext, "~> 0.11"},
-     {:cowboy, "~> 1.0"}]
+     {:plug_cowboy, "~> 2.0"},
+     {:jason, "~> 1.0"},
+     {:plug, "~> 1.7"}]
   end
 end
