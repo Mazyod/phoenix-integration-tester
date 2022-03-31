@@ -10,8 +10,7 @@ config :tester, Tester.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "aW7zsLCePUsfemsivWzwtTqqfFK9U7l0rkw65nmg3bUeAqXR3IGoKzNOWh4NW/AT",
   render_errors: [view: Tester.ErrorView, accepts: ~w(json)],
-  pubsub: [name: Tester.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub_server: Tester.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,

@@ -1,12 +1,13 @@
 defmodule Tester.TesterChannel do
   use Tester.Web, :channel
   require Logger
+  alias TesterWeb.Presence
 
   def join("tester:" <> _id, params, socket) do
 
-    with %{"auth" => _auth} <- params do
-      send self(), :after_join
-      {:ok, socket}
+    with %{"auth" => auth} <- params do
+      send(self(), :after_join)
+      {:ok, assign(socket, :auth, auth)}
     else
       _ -> {:error, %{message: "auth required"}}
     end
@@ -34,7 +35,13 @@ defmodule Tester.TesterChannel do
   end
 
   def handle_info(:after_join, socket) do
-    push socket, "after_join", %{message: "Welcome!"}
+    push(socket, "after_join", %{message: "Welcome!"})
+
+    {:ok, _} = Presence.track(socket, socket.assigns.auth, %{
+      online_at: inspect(System.system_time(:second))
+    })
+
+    push(socket, "presence_state", Presence.list(socket))
     {:noreply, socket}
   end
 

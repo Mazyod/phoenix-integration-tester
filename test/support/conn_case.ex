@@ -18,7 +18,8 @@ defmodule Tester.ConnCase do
   using do
     quote do
       # Import conveniences for testing with connections
-      use Phoenix.ConnTest
+      import Plug.Conn
+      import Phoenix.ConnTest
 
       import Tester.Router.Helpers
 
@@ -27,7 +28,7 @@ defmodule Tester.ConnCase do
     end
   end
 
-  setup tags do
+  setup _tags do
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
