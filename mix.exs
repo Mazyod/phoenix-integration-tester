@@ -6,7 +6,7 @@ defmodule Tester.Mixfile do
      version: "0.0.1",
      elixir: "~> 1.14",
      elixirc_paths: elixirc_paths(Mix.env),
-     compilers: [:phoenix, :gettext] ++ Mix.compilers,
+     compilers: [:phoenix] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps()]
@@ -28,11 +28,11 @@ defmodule Tester.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.6.0"},
-     {:phoenix_pubsub, "~> 2.0"},
-     {:gettext, "~> 0.11"},
-     {:plug_cowboy, "~> 2.0"},
-     {:jason, "~> 1.0"},
-     {:plug, "~> 1.7"}]
+    [{:phoenix, "~> 1.6.15"},
+     {:phoenix_pubsub, "~> 2.1"},
+     {:gettext, "~> 0.20"},
+     {:plug_cowboy, "~> 2.6"},
+     {:jason, "~> 1.4"},
+     {:plug, "~> 1.14"}]
   end
 end
