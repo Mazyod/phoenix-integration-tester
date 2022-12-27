@@ -4,3 +4,8 @@
 # .. except
 !mix.exs
 !mix.lock
+
+!/config/
+!/lib/
+!/priv/
+!/web/
