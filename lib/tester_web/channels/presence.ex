@@ -5,6 +5,7 @@ defmodule TesterWeb.Presence do
   See the [`Phoenix.Presence`](https://hexdocs.pm/phoenix/Phoenix.Presence.html)
   docs for more details.
   """
-  use Phoenix.Presence, otp_app: :tester,
-                        pubsub_server: Tester.PubSub
+  use Phoenix.Presence,
+    otp_app: :tester,
+    pubsub_server: Tester.PubSub
 end

@@ -1,16 +1,18 @@
-defmodule Tester.ChannelCase do
+defmodule TesterWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
 
   Such tests rely on `Phoenix.ChannelTest` and also
   import other functionality to make it easier
-  to build and query models.
+  to build common data structures and query the data layer.
 
   Finally, if the test case interacts with the database,
-  it cannot be async. For this reason, every test runs
-  inside a transaction which is reset at the beginning
-  of the test unless the test case is marked as async.
+  we enable the SQL sandbox, so changes done to the database
+  are reverted at the end of every test. If you are using
+  PostgreSQL, you can even run database tests asynchronously
+  by setting `use TesterWeb.ChannelCase, async: true`, although
+  this option is not recommended for other databases.
   """
 
   use ExUnit.CaseTemplate
@@ -19,15 +21,14 @@ defmodule Tester.ChannelCase do
     quote do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
-
+      import TesterWeb.ChannelCase
 
       # The default endpoint for testing
-      @endpoint Tester.Endpoint
+      @endpoint TesterWeb.Endpoint
     end
   end
 
   setup _tags do
-
     :ok
   end
 end
