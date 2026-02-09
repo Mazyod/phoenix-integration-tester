@@ -4,16 +4,16 @@ import Config
 # debugging and code reloading.
 #
 # The watchers configuration can be used to run external
-# watchers to your application. For example, we use it
-# with esbuild to bundle .js and .css sources.
+# watchers to your application. For example, we can use it
+# to bundle .js and .css sources.
 config :tester, TesterWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: 4000],
+  http: [ip: {127, 0, 0, 1}],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "1BEsoAkdE6ooALGigfWcB00L014XKOKh945ATI8JS6I/qG5pf5eG7wMuPlPSp1aX",
+  secret_key_base: "AqRS52Ta9W2V97EVlQ4doy9q0qcieWsD0jb3wPzMs2P4s8c3PCW05C+i7H+H4dC0",
   watchers: []
 
 # ## SSL Support
@@ -43,7 +43,7 @@ config :tester, TesterWeb.Endpoint,
 config :tester, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
-config :logger, :console, format: "[$level] $message\n"
+config :logger, :default_formatter, format: "[$level] $message\n"
 
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.

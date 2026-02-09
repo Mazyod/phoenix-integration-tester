@@ -37,9 +37,7 @@ defmodule TesterWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller,
-        formats: [:html, :json],
-        layouts: [html: TesterWeb.Layouts]
+      use Phoenix.Controller, formats: [:html, :json]
 
       import Plug.Conn
 
@@ -57,7 +55,7 @@ defmodule TesterWeb do
   end
 
   @doc """
-  When used, dispatch to the appropriate controller/view/etc.
+  When used, dispatch to the appropriate controller/live_view/etc.
   """
   defmacro __using__(which) when is_atom(which) do
     apply(__MODULE__, which, [])

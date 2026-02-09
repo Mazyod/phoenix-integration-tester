@@ -8,14 +8,11 @@ defmodule Tester.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Start the Telemetry supervisor
       TesterWeb.Telemetry,
-      # Start the PubSub system
+      {DNSCluster, query: Application.get_env(:tester, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Tester.PubSub},
-      # Start the Endpoint (http/https)
+      # Start to serve requests, typically the last entry
       TesterWeb.Endpoint,
-      # Start a worker by calling: Tester.Worker.start_link(arg)
-      # {Tester.Worker, arg}
       TesterWeb.Presence
     ]
 

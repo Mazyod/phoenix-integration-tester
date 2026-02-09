@@ -7,18 +7,22 @@
 # General application configuration
 import Config
 
-# Configures the endpoint
+config :tester,
+  generators: [timestamp_type: :utc_datetime]
+
+# Configure the endpoint
 config :tester, TesterWeb.Endpoint,
   url: [host: "localhost"],
+  adapter: Bandit.PhoenixAdapter,
   render_errors: [
     formats: [json: TesterWeb.ErrorJSON],
     layout: false
   ],
   pubsub_server: Tester.PubSub,
-  live_view: [signing_salt: "qnKG7aVh"]
+  live_view: [signing_salt: "haMV5rKE"]
 
-# Configures Elixir's Logger
-config :logger, :console,
+# Configure Elixir's Logger
+config :logger, :default_formatter,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
