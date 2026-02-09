@@ -23,7 +23,7 @@ COPY priv priv
 RUN mix compile && mix release
 
 # Runtime stage
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
 
 RUN apt-get update -y && \
     apt-get install -y --no-install-recommends libstdc++6 openssl libncurses6 locales && \
