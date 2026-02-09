@@ -1,18 +1,34 @@
-# Tester
+# Phoenix Integration Tester
 
-To start your Phoenix server:
+A Phoenix server used as the integration test target for [PhoenixSharp](https://github.com/Mazyod/phoenixsharp), a C# Phoenix Channels client library.
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+The server is deployed publicly so that PhoenixSharp's integration tests can run against it. It exposes a WebSocket endpoint and a health-check REST endpoint covering the key scenarios: channel join with auth, message reply/push/error/timeout, and presence tracking.
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Running Locally
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+```bash
+mix setup
+mix phx.server
+```
 
-## Learn more
+Server starts at `localhost:4000`.
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+## Running with Docker
+
+```bash
+docker compose up --build
+```
+
+## API Surface
+
+- **WebSocket**: `/socket` — accepts connections, routes `tester:*` topics
+- **Channel join**: requires `{"auth": "<value>"}` in the payload
+- **Channel events**: `reply_test`, `push_test`, `error_test`, `timeout_test`
+- **Presence**: tracks users with device metadata on join
+- **Health check**: `GET /api/health-check` returns `{"ok": true}`
+
+## Running Tests
+
+```bash
+mix test
+```
